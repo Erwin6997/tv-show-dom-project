@@ -60,6 +60,7 @@ p {
 }
 .episode-all:hover > .episode-title {
   font-size: 17px;
+  height: 65px;
   width: 330px;
   color: rgb(233, 231, 231);
   background-color: #3a3a3a;
