@@ -1,10 +1,11 @@
 //You can edit ALL of the code here
+// level 100:
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 };
+const rootElem = document.getElementById("root");
 function makePageForEpisodes(episodeList) {
-  const rootElem = document.getElementById("root");
   episodeList.forEach((episode, index)=>{
     rootElem.innerHTML += `
     <div id="${episode.airdate}"class="episode-all">
@@ -16,6 +17,33 @@ function makePageForEpisodes(episodeList) {
 }
 
 window.onload = setup;
+
+//  level 200 :
+let searchDiv = document.createElement("div");
+let searchText = document.createElement("input");
+let searchState = document.createElement("lable");
+
+searchText.type = "text";
+
+rootElem.appendChild(searchDiv);
+searchDiv.appendChild(searchText);
+searchDiv.appendChild(searchState);
+
+searchText.addEventListener('input',myFunction);
+
+function myFunction(){
+  searchState.style.backgroundColor = "red";
+  searchState.innerHTML = searchText.value;
+};
+
+
+//link to TvMaze
+let linkTvMaze = document.createElement("a");
+linkTvMaze.href = "https://www.tvmaze.com/";
+linkTvMaze.innerText = "Tv Maze";
+linkTvMaze.className = "link-Tv-Maze";
+linkTvMaze.target = "_blank";
+document.body.appendChild(linkTvMaze);
 
 
 /*

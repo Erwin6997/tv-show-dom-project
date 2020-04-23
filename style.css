@@ -72,6 +72,22 @@ p {
 .episode-all:hover > p {
   font-size: 14px;
 }
+ .link-Tv-Maze:hover {
+  background-color: rgb(26, 25, 26);
+  color: #b3afaf;
+  padding: 20px 20px 10px 80px;
+ }
+.link-Tv-Maze {
+  top: 90%;
+  left : 0px;
+  background-color: rgb(37, 34, 37);
+  position: absolute;
+  text-decoration: none;
+  color: rgb(107, 110, 107);
+  padding: 15px 20px 7px 50px;
+  position: fixed;
+  text-align: center;
+}
 
 /* response:  */
 @media only screen and (min-width: 600px) {
