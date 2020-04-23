@@ -16,25 +16,28 @@ function makePageForEpisodes(episodeList) {
   });  
 }
 
-window.onload = setup;
+
 
 //  level 200 :
+
+/*
 let searchDiv = document.createElement("div");
 let searchText = document.createElement("input");
 let searchState = document.createElement("lable");
 
 searchText.type = "text";
 
-rootElem.appendChild(searchDiv);
+document.body.appendChild(searchDiv);
 searchDiv.appendChild(searchText);
 searchDiv.appendChild(searchState);
 
-searchText.addEventListener('input',myFunction);
-
-function myFunction(){
+searchText.addEventListener('input', () =>{
   searchState.style.backgroundColor = "red";
   searchState.innerHTML = searchText.value;
-};
+  console.log('hi');
+});
+*/
+
 
 
 //link to TvMaze
@@ -46,6 +49,8 @@ linkTvMaze.target = "_blank";
 document.body.appendChild(linkTvMaze);
 
 
+
+window.onload = setup;
 /*
      this is the first Idea but i check innerHTML i got it how can put everything inside them :
 
@@ -88,9 +93,3 @@ function makePageForEpisodes(episodeList) {
   }
 };
 */
-
-
-
-
-
-

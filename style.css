@@ -16,6 +16,22 @@ body {
   box-shadow: 0px 0px 20px rgba(23, 24, 24, 0.7);
   padding-top: 20px;
 }
+#search-box {
+  margin-bottom: 30px;
+ 
+}
+#search-container{
+  margin-top: 30px;
+  margin-left: 50%;
+  padding-left: 6%;
+  padding-top: 5px;
+}
+#display-search{
+  margin-top: -25px;
+  margin-left: 62%;
+  padding-left: 6%;
+  padding-top: 5px;
+}
 .episode-all {
   width: 320px;
   height: 500px;
@@ -48,7 +64,17 @@ p {
   font-family: "Lucida Console", Courier, monospace;
   font-size: small;
 }
-
+.link-Tv-Maze {
+  top: 94%;
+  left : 0px;
+  background-color: rgb(37, 34, 37);
+  position: absolute;
+  text-decoration: none;
+  color: rgb(107, 110, 107);
+  padding: 15px 20px 7px 50px;
+  position: fixed;
+  text-align: center;
+}
 /* hover:  */
 .episode-all:hover {
   width: 330px;
@@ -56,7 +82,6 @@ p {
   border: 2px solid #5f5e5f;
   cursor: pointer;
   background-color: rgb(192, 189, 192);
-
 }
 .episode-all:hover > .episode-title {
   font-size: 17px;
@@ -77,17 +102,7 @@ p {
   color: #b3afaf;
   padding: 20px 20px 10px 80px;
  }
-.link-Tv-Maze {
-  top: 94%;
-  left : 0px;
-  background-color: rgb(37, 34, 37);
-  position: absolute;
-  text-decoration: none;
-  color: rgb(107, 110, 107);
-  padding: 15px 20px 7px 50px;
-  position: fixed;
-  text-align: center;
-}
+
 
 /* response:  */
 @media only screen and (min-width: 600px) {
