@@ -4,14 +4,17 @@ function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
   searchEpisode()
+  selectListEpisode(allEpisodes);
 };
 const rootElem = document.getElementById("root");
 
 function makePageForEpisodes(episodeList) {
   episodeList.forEach((episode, index)=>{
     rootElem.innerHTML += `
-    <div id="${episode.airdate}"class="episode-all">
-      <p class="episode-title">${episode.name} - S0${episode.season} E0${episode.number}</p>
+    <div id="${episode.id}"class="episode-all">
+      <p class="episode-title">${episode.name} - S${episode.season.toString()
+        .padStart(2, "0")} E${episode.number.toString()
+          .padStart(2, "0")}</p>
       <img class="image-episode" src=${episode.image.medium}>
       ${episode.summary}
     </div>`    
@@ -39,11 +42,45 @@ function searchEpisode() {
     }
   });
   searchContain.addEventListener("input", searchEpisode);
-  searchDisplay.innerText = `${counter} / ${allEpisodeSearch.length} episodes`;
+  searchDisplay.innerText =
+   `${counter} / ${allEpisodeSearch.length} episodes`;
 }
+
+// level 300 start to make select with all episode and E00N00:
+function selectListEpisode (episodes){
+  episodes.forEach((episodeE) => {
+    let nameEpisode = document.getElementById("episode-Dropdown-list");
+    let optionEpisode = document.createElement("option");
+    optionEpisode.value= episodeE.id;
+    optionEpisode.innerHTML = `S${episodeE.season.toString()
+      .padStart(2, "0")}E${episodeE.number.toString()
+        .padStart(2, "0")} - ${episodeE.name}`;
+    nameEpisode.appendChild(optionEpisode);
+  });
+   showEpisodeDesktop(episodes)
+}
+
+// show episode select on desktop :
+
+function showEpisodeDesktop(episode){
+  let episodeID = document.getElementById("episode-Dropdown-list").value;
+  episode.forEach((episodeE) => {
+  let episodeIDD = episodeE.id;
+  console.log("id:"+episodeID);
+  console.log("idd:"+ episodeIDD);
+  if (episodeIDD == episodeID){
+  } 
   
+ 
+});
+episodeID.addEventListener("change", scroll);
+}
 
 
+function scroll() {
+  let selectForm = document.getElementById("selectEpisodesId");
+  window.location.hash = selectForm.options[selectForm.selectedIndex].value;
+}
 
 //link to TvMaze
 let linkTvMaze = document.createElement("a");

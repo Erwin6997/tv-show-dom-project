@@ -5,6 +5,16 @@ body {
   width: 100%;
   height: 100%;
 }
+#search-box {
+  background-color: rgb(95, 94, 95);
+  box-shadow: 0px 0px 20px rgba(31, 22, 22, 0.7);
+  margin: 30px 5% 10px 5%;
+  border-radius: 5px;
+  height: 1.5cm;
+}
+#display-search{
+  margin: 0px 0% 1px 70%;
+}
 #root {
   background-color: rgb(158, 156, 158);
   width: 95%;
@@ -16,24 +26,7 @@ body {
   box-shadow: 0px 0px 20px rgba(23, 24, 24, 0.7);
   padding-top: 20px;
 }
-#search-box {
-  background-color: rgb(95, 94, 95);
-  box-shadow: 0px 0px 20px rgba(31, 22, 22, 0.7);
-  margin: 30px 5% 10px 5%;
-  border-radius: 5px;
-  height: 1.5cm;
-}
-#search-container{
-  margin-top: 20px;
-  margin-left: 60%;
-  padding-left: 7%;
-}
-#display-search{
-  margin-top: -25px;
-  margin-left: 75%;
-  padding-left: 6%;
-  padding-top: 5px;
-}
+
 .episode-all {
   width: 320px;
   height: 500px;
@@ -59,7 +52,7 @@ body {
   margin: 10px 10px;
   border-radius: 5px;
 }
-p {
+.episode-all > p {
   width: 300px;
   text-align: left;
   padding-left: 30px;
