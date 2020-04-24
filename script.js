@@ -1,10 +1,12 @@
 //You can edit ALL of the code here
-// level 100:
+// level 100: function to show the all the episode :
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
+  searchEpisode()
 };
 const rootElem = document.getElementById("root");
+
 function makePageForEpisodes(episodeList) {
   episodeList.forEach((episode, index)=>{
     rootElem.innerHTML += `
@@ -18,25 +20,28 @@ function makePageForEpisodes(episodeList) {
 
 
 
-//  level 200 :
+//  level 200 : function shod the search bar :
 
-/*
-let searchDiv = document.createElement("div");
-let searchText = document.createElement("input");
-let searchState = document.createElement("lable");
+let searchContain = document.getElementById("search-container");
+let searchDisplay = document.getElementById("display-search");
 
-searchText.type = "text";
-
-document.body.appendChild(searchDiv);
-searchDiv.appendChild(searchText);
-searchDiv.appendChild(searchState);
-
-searchText.addEventListener('input', () =>{
-  searchState.style.backgroundColor = "red";
-  searchState.innerHTML = searchText.value;
-  console.log('hi');
-});
-*/
+function searchEpisode() {
+  let counter = 0;
+  let lowCase = searchContain.value.toLowerCase();
+  let allEpisodeSearch = document.getElementsByClassName("episode-all")
+  Array.from(allEpisodeSearch).forEach((episode) => {
+    let episodeCharacter = episode.innerText.toLowerCase();
+    if (episodeCharacter.indexOf(lowCase) != -1) {
+      episode.style.display = "block";
+      counter += 1;
+    } else {
+       episode.style.display = "none";
+    }
+  });
+  searchContain.addEventListener("input", searchEpisode);
+  searchDisplay.innerText = `${counter} / ${allEpisodeSearch.length} episodes`;
+}
+  
 
 
 
