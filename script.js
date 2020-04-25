@@ -19,7 +19,10 @@ function makePageForEpisodes(episodeList) {
       ${episode.summary}
     </div>`    
   });  
+
+  
 }
+
 
 
 
@@ -57,30 +60,35 @@ function selectListEpisode (episodes){
         .padStart(2, "0")} - ${episodeE.name}`;
     nameEpisode.appendChild(optionEpisode);
   });
-   showEpisodeDesktop(episodes)
 }
 
 // show episode select on desktop :
+let episodeID = document.getElementById("episode-Dropdown-list");
 
-function showEpisodeDesktop(episode){
-  let episodeID = document.getElementById("episode-Dropdown-list").value;
-  episode.forEach((episodeE) => {
-  let episodeIDD = episodeE.id;
-  console.log("id:"+episodeID);
-  console.log("idd:"+ episodeIDD);
-  if (episodeIDD == episodeID){
-  } 
+function showEpisodeDesktop(){
+  const episode = getAllEpisodes();
+    Array.from(episode).forEach((episodeE) => {
+      let episodee = episodeID.value;
+      let episodeIDD = episodeE.id;
+      if (episodeIDD == episodee){
+        let selectEpisodeOptions = document.getElementsByClassName("episode-all");
+        Array.from(selectEpisodeOptions).forEach((opt) => opt.remove());
+        rootElem.innerHTML += `
+          <div id="${episodeE.id}"class="episode-all">
+          <p class="episode-title">${episodeE.name} - S${episodeE.season.toString()
+          .padStart(2, "0")} E${episodeE.number.toString()
+          .padStart(2, "0")}</p>
+          ${episodeE.summary}
+          <img class="image-episode" src=${episodeE.image.medium}>
+        </div>`;
+      }  
+        });
+   searchDisplay.innerText =`1/73 episodes`;
+}
+episodeID.addEventListener('change', showEpisodeDesktop );
   
- 
-});
-episodeID.addEventListener("change", scroll);
-}
 
 
-function scroll() {
-  let selectForm = document.getElementById("selectEpisodesId");
-  window.location.hash = selectForm.options[selectForm.selectedIndex].value;
-}
 
 //link to TvMaze
 let linkTvMaze = document.createElement("a");

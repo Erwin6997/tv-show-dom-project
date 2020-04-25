@@ -8,13 +8,16 @@ body {
 #search-box {
   background-color: rgb(95, 94, 95);
   box-shadow: 0px 0px 20px rgba(31, 22, 22, 0.7);
-  margin: 30px 5% 10px 5%;
+  margin: 30px 5% 10px 10%;
   border-radius: 5px;
   height: 1.5cm;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+  display: inline-flex;
+  
 }
-#display-search{
-  margin: 0px 0% 1px 70%;
-}
+
 #root {
   background-color: rgb(158, 156, 158);
   width: 95%;
