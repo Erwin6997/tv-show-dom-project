@@ -5,6 +5,7 @@ function setup() {
   makePageForEpisodes(allEpisodes);
   searchEpisode()
   selectListEpisode(allEpisodes);
+  
 };
 const rootElem = document.getElementById("root");
 
@@ -51,13 +52,13 @@ function searchEpisode() {
 
 // level 300 start to make select with all episode and E00N00:
 function selectListEpisode (episodes){
-  episodes.forEach((episodeE) => {
+  episodes.forEach((episode) => {
     let nameEpisode = document.getElementById("episode-Dropdown-list");
     let optionEpisode = document.createElement("option");
-    optionEpisode.value= episodeE.id;
-    optionEpisode.innerHTML = `S${episodeE.season.toString()
-      .padStart(2, "0")}E${episodeE.number.toString()
-        .padStart(2, "0")} - ${episodeE.name}`;
+    optionEpisode.value= episode.id;
+    optionEpisode.innerHTML = `S${episode.season.toString()
+      .padStart(2, "0")}E${episode.number.toString()
+        .padStart(2, "0")} - ${episode.name}`;
     nameEpisode.appendChild(optionEpisode);
   });
 }
@@ -66,28 +67,36 @@ function selectListEpisode (episodes){
 let episodeID = document.getElementById("episode-Dropdown-list");
 
 function showEpisodeDesktop(){
-  const episode = getAllEpisodes();
-    Array.from(episode).forEach((episodeE) => {
-      let episodee = episodeID.value;
-      let episodeIDD = episodeE.id;
-      if (episodeIDD == episodee){
-        let selectEpisodeOptions = document.getElementsByClassName("episode-all");
-        Array.from(selectEpisodeOptions).forEach((opt) => opt.remove());
+  const episodes = getAllEpisodes();
+    Array.from(episodes).forEach((episode) => {
+      if (episode.id == episodeID.value){
+        removeScreen();
         rootElem.innerHTML += `
-          <div id="${episodeE.id}"class="episode-all">
-          <p class="episode-title">${episodeE.name} - S${episodeE.season.toString()
-          .padStart(2, "0")} E${episodeE.number.toString()
+          <div id="${episode.id}"class="episode-all">
+          <p class="episode-title">${episode.name} - S${episode.season.toString()
+          .padStart(2, "0")} E${episode.number.toString()
           .padStart(2, "0")}</p>
-          ${episodeE.summary}
-          <img class="image-episode" src=${episodeE.image.medium}>
+          ${episode.summary}
+          <img class="image-episode" src=${episode.image.medium}>
         </div>`;
       }  
         });
    searchDisplay.innerText =`1/73 episodes`;
 }
 episodeID.addEventListener('change', showEpisodeDesktop );
-  
+ 
+// start level 400 and add petch() :
 
+
+
+
+
+
+// screen remover for change screen :
+function removeScreen(){
+  let selectEpisodeOptions = document.getElementsByClassName("episode-all");
+  Array.from(selectEpisodeOptions).forEach((opt) => opt.remove());
+}
 
 
 //link to TvMaze

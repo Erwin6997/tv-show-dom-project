@@ -103,6 +103,23 @@ body {
 
 
 /* response:  */
+@media only screen and (max-width: 500px) {
+  #search-box {   
+    flex-direction: column;
+    height: 25vh;
+  }
+  select{
+   color: white;
+   display: grid;
+  }
+
+}
+@media only screen and (min-width: 300px) {
+  #root {    
+    grid-template-columns: auto;  
+  }  
+  
+}
 @media only screen and (min-width: 600px) {
   #root {   
     grid-template-columns: auto auto;    
@@ -123,3 +140,4 @@ body {
     grid-template-columns: auto auto auto auto auto;    
   }
 }
+
