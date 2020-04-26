@@ -5,7 +5,7 @@ function setup() {
   makePageForEpisodes(allEpisodes);
   searchEpisode()
   selectListEpisode(allEpisodes);
-  
+
 };
 const rootElem = document.getElementById("root");
 
@@ -87,6 +87,17 @@ episodeID.addEventListener('change', showEpisodeDesktop );
  
 // start level 400 and add petch() :
 
+const listMoves = getAllShows();
+//makePageForEpisodes(listMoves);
+console.log("film:"+ listMoves[3].name); 
+listMoves.forEach((moves) => {
+  let nameMoves = document.getElementById("moves-Dropdown-list");
+  let optionMoves = document.createElement("option");
+  optionMoves.value= moves.id;
+  optionMoves.innerHTML =  `${moves.name}`;
+  nameMoves.appendChild(optionMoves);
+  
+});
 
 
 
