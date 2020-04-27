@@ -9,7 +9,7 @@ function setup() {
   //searchEpisode()
   //selectListEpisode(allEpisodes);
 };
- 
+//const allDataBase = 0 ;
 const rootElem = document.getElementById("root");
 
 function makePageForEpisodes(episodeList) {
@@ -62,14 +62,22 @@ function selectListEpisode (episodes){
         .padStart(2, "0")} - ${episode.name}`;
         episodeID.appendChild(optionEpisode);
   });
+ // showEpisodeDesktop(episodes);
 }
 
 // show episode select on desktop :
 
+episodeID.addEventListener('change', showEpisodeDesktop );
 
 function showEpisodeDesktop(episodes){
-    Array.from(episodes).forEach((episode) => {
-      if (episode.id == episodeID.value){
+  
+  let allDataBase = episodes;
+  console.log("episodeID :" + episodeID.value);
+  console.log("all: "+ episodes.length);
+   for (let i = 0 ; i < allDataBase.length ; ++i){
+   // Array.from(episodes).forEach((episode) => { 
+      console.log("episode: Arr :" + allDataBase[i].id);
+      if (allDataBase[i].id == episodeID.value){
         removeScreen();
         rootElem.innerHTML += `
           <div id="${episode.id}"class="episode-all">
@@ -80,10 +88,10 @@ function showEpisodeDesktop(episodes){
           <img class="image-episode" src=${episode.image.medium}>
         </div>`;
       }  
-        });
-   searchDisplay.innerText =`1/73 episodes`;
+    };
+   searchDisplay.innerText =`1/${episodeID.length -1}`;
 }
-episodeID.addEventListener('change', showEpisodeDesktop );
+
 
 // start level 400 and add petch() :
 
@@ -110,11 +118,11 @@ function FetchFunction(episodeUrl) {
     .then((data) => {
       makePageForEpisodes(data);
       selectListEpisode(data);
-      showEpisodeDesktop(data);
       searchEpisode();
     })
     .catch((error) => console.log(error));
 }
+
 let nameMoves = document.getElementById("moves-Dropdown-list");
 nameMoves.name = "allShows";
 nameMoves.addEventListener("change", showMovesToEpisodeSelectList);
@@ -126,6 +134,7 @@ function showMovesToEpisodeSelectList(){
 
 
 //end fetch
+
 
 
 // screen remover for change screen :
