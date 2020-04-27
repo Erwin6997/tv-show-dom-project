@@ -9,8 +9,12 @@ function setup() {
   //searchEpisode()
   //selectListEpisode(allEpisodes);
 };
-//const allDataBase = 0 ;
 const rootElem = document.getElementById("root");
+let searchContain = document.getElementById("search-container");
+let searchDisplay = document.getElementById("display-search");
+let nameMoves = document.getElementById("moves-Dropdown-list");
+let url = "https://api.tvmaze.com/shows/show-id/episodes";
+let episodes;
 
 function makePageForEpisodes(episodeList) {
   removeScreen();
@@ -24,12 +28,10 @@ function makePageForEpisodes(episodeList) {
       ${episode.summary}
     </div>`    
   });  
-  
 }
 //  level 200 : function shod the search bar :
 
-let searchContain = document.getElementById("search-container");
-let searchDisplay = document.getElementById("display-search");
+
 
 function searchEpisode() {
   let counter = 0;
@@ -62,22 +64,14 @@ function selectListEpisode (episodes){
         .padStart(2, "0")} - ${episode.name}`;
         episodeID.appendChild(optionEpisode);
   });
- // showEpisodeDesktop(episodes);
+   showEpisodeDesktop();
 }
-
-// show episode select on desktop :
 
 episodeID.addEventListener('change', showEpisodeDesktop );
 
-function showEpisodeDesktop(episodes){
-  
-  let allDataBase = episodes;
-  console.log("episodeID :" + episodeID.value);
-  console.log("all: "+ episodes.length);
-   for (let i = 0 ; i < allDataBase.length ; ++i){
-   // Array.from(episodes).forEach((episode) => { 
-      console.log("episode: Arr :" + allDataBase[i].id);
-      if (allDataBase[i].id == episodeID.value){
+function showEpisodeDesktop(){
+   Array.from(episodes).forEach((episode) => { 
+      if (episode.id == episodeID.value){
         removeScreen();
         rootElem.innerHTML += `
           <div id="${episode.id}"class="episode-all">
@@ -88,7 +82,7 @@ function showEpisodeDesktop(episodes){
           <img class="image-episode" src=${episode.image.medium}>
         </div>`;
       }  
-    };
+    });
    searchDisplay.innerText =`1/${episodeID.length -1}`;
 }
 
@@ -98,7 +92,6 @@ function showEpisodeDesktop(episodes){
 // fetch :
 
 function makeMovesSelect(listMoves){
- 
   listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
   listMoves.forEach((moves) => {
     let optionMoves = document.createElement("option");
@@ -108,7 +101,6 @@ function makeMovesSelect(listMoves){
   });
   
 }
-let url = "https://api.tvmaze.com/shows/show-id/episodes";
 
 function FetchFunction(episodeUrl) {
   fetch(episodeUrl)
@@ -116,15 +108,17 @@ function FetchFunction(episodeUrl) {
     return response.json()
   })
     .then((data) => {
+      episodes = data;
       makePageForEpisodes(data);
       selectListEpisode(data);
       searchEpisode();
+      
     })
     .catch((error) => console.log(error));
 }
 
-let nameMoves = document.getElementById("moves-Dropdown-list");
-nameMoves.name = "allShows";
+
+
 nameMoves.addEventListener("change", showMovesToEpisodeSelectList);
 function showMovesToEpisodeSelectList(){
   let episodeSelect = nameMoves.value;
