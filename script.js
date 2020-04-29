@@ -30,14 +30,14 @@ function showAllMoves(){
         <img class="image-show" src=${episode.image.medium}></a>
       </div>
       <div class = " all-infoo">  
-        <p><strong>Type: </strong> <a href="https://ww.123moviesfree.ws/genre/drama/">${episode.type}</a></p>
-        <p><strong>language: </strong> <a href="https://ww.123moviesfree.ws/genre/drama/">${episode.language}</a></p>
-        <p><strong>Genre: </strong> <a href="https://ww.123moviesfree.ws/genre/drama/">${episode.genres}</a></p>
-        <p><strong>premiered: </strong> <a href="https://ww.123moviesfree.ws/cast/anya-taylor-joy/" >${episode.premiered}</a></p>
-        <p><strong>officialSite: </strong> <a href="http://www.hbo.com/game-of-thrones/">${episode.officialSite}</a></p>
-        <p><strong>schedule: </strong> <a href="https://ww.123moviesfree.ws/country/uk/" >Time:${episode.schedule.time},days:${episode.schedule.days}</a></a></p>
-        <p><strong>Network Name: </strong> <a href="https://ww.123moviesfree.ws/country/uk/" >${episode.network.name}</a></p>
-        <p><strong>Country: </strong> <a href="https://ww.123moviesfree.ws/country/uk/" >${episode.network.country.name}</a></p>
+        <p><strong>Type: </strong>${episode.type}</p>
+        <p><strong>language: </strong>>${episode.language}</p>
+        <p><strong>Genre: </strong> <a href="https://ww.123moviesfree.ws/genre/${episode.genres}/">${episode.genres}</a></p>
+        <p><strong>premiered: </strong>${episode.premiered}</p>
+        <p><strong>officialSite: </strong>${episode.officialSite}</p>
+        <p><strong>schedule: </strong>Time:${episode.schedule.time},days:${episode.schedule.days}</a></p>
+        <p><strong>Network Name: </strong>${episode.network.name}</a></p>
+        <p><strong>Country: </strong> ${episode.network.country.name}</a></p>
       </div> 
       <div class="summary-All">
       <p >${episode.summary}</p>
