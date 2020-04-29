@@ -38,6 +38,7 @@ body {
   padding-left: 100px;
   margin-top: -30px;
   height: 1.5cm;
+  font-family: "Lucida Console", Courier, monospace;
 
 }
 .image-show{
@@ -46,12 +47,14 @@ body {
   
 }
 .all-infoo{
+  font-family: "Lucida Console", Courier, monospace;
  margin: -7.5cm 10% 30px 55%;
 
 }
 .summary-All{
   margin: 40px 10% 100px 10%;
   padding-bottom: 2cm;
+  font-family: "Lucida Console", Courier, monospace;
 }
 .episode-all {
   width: 320px;
@@ -140,10 +143,19 @@ body {
     height: 25vh;
   }
   select{
-  
    display: grid;
   }
-
+  .show-all-moves{
+   display: -ms-grid;
+  }
+  #name-show{
+   padding-left: 1cm;
+   font-size: 20px;
+  }
+  .all-infoo{
+   margin: 0.70cm 0% 10px 5%;
+  
+  }
 }
 @media only screen and (min-width: 300px) {
   #root {    
