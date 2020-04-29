@@ -31,13 +31,13 @@ function showAllMoves(){
       </div>
       <div class = " all-infoo">  
         <p><strong>Type: </strong>${episode.type}</p>
-        <p><strong>language: </strong>>${episode.language}</p>
+        <p><strong>language: </strong>${episode.language}</p>
         <p><strong>Genre: </strong> <a href="https://ww.123moviesfree.ws/genre/${episode.genres}/">${episode.genres}</a></p>
         <p><strong>premiered: </strong>${episode.premiered}</p>
-        <p><strong>officialSite: </strong>${episode.officialSite}</p>
-        <p><strong>schedule: </strong>Time:${episode.schedule.time},days:${episode.schedule.days}</a></p>
-        <p><strong>Network Name: </strong>${episode.network.name}</a></p>
-        <p><strong>Country: </strong> ${episode.network.country.name}</a></p>
+        <p><strong>officialSite: </strong> <a href="${episode.officialSite}"> TV Show</a></p>
+        <p><strong>schedule: </strong>Time:${episode.schedule.time},days:${episode.schedule.days}</p>
+        <p><strong>Network Name: </strong>${episode.network.name}</p>
+        <p><strong>Country: </strong> ${episode.network.country.name}</p>
       </div> 
       <div class="summary-All">
       <p >${episode.summary}</p>
