@@ -1,13 +1,11 @@
 //You can edit ALL of the code here
 // level 100: function to show the all the episode :
+let listMoves;
 function setup() {
-  const listMoves = getAllShows();
+  listMoves = getAllShows();
   makeMovesSelect(listMoves);
+  showAllMoves(listMoves);
   showMovesToEpisodeSelectList();
-  //const allEpisodes = getAllEpisodes();
-  //makePageForEpisodes(allEpisodes);
-  //searchEpisode()
-  //selectListEpisode(allEpisodes);
 };
 const rootElem = document.getElementById("root");
 let searchContain = document.getElementById("search-container");
@@ -16,9 +14,63 @@ let nameMoves = document.getElementById("moves-Dropdown-list");
 let url = "https://api.tvmaze.com/shows/show-id/episodes";
 let episodes;
 
-function makePageForEpisodes(episodeList) {
+
+
+//show all the moves in first :
+function showAllMoves(){
   removeScreen();
-  episodeList.forEach((episode, index)=>{
+  document.getElementById("root").style.display ="block";
+  listMoves.forEach((episode)=>{
+   rootElem.innerHTML += ` 
+    <form id="${episode.id}" class="show-all-moves"> 
+      <div id="name-show">
+        <h3>${episode.name}</></h3>
+      </div>
+      <div id="image-show"><a href="${episode.image.original}">
+        <img class="image-show" src=${episode.image.medium}></a>
+      </div>
+      <div class = " all-infoo">  
+        <p><strong>Type: </strong> <a href="https://ww.123moviesfree.ws/genre/drama/">${episode.type}</a></p>
+        <p><strong>language: </strong> <a href="https://ww.123moviesfree.ws/genre/drama/">${episode.language}</a></p>
+        <p><strong>Genre: </strong> <a href="https://ww.123moviesfree.ws/genre/drama/">${episode.genres}</a></p>
+        <p><strong>premiered: </strong> <a href="https://ww.123moviesfree.ws/cast/anya-taylor-joy/" >${episode.premiered}</a></p>
+        <p><strong>officialSite: </strong> <a href="http://www.hbo.com/game-of-thrones/">${episode.officialSite}</a></p>
+        <p><strong>schedule: </strong> <a href="https://ww.123moviesfree.ws/country/uk/" >Time:${episode.schedule.time},days:${episode.schedule.days}</a></a></p>
+        <p><strong>Network Name: </strong> <a href="https://ww.123moviesfree.ws/country/uk/" >${episode.network.name}</a></p>
+        <p><strong>Country: </strong> <a href="https://ww.123moviesfree.ws/country/uk/" >${episode.network.country.name}</a></p>
+      </div> 
+      <div class="summary-All">
+      <p >${episode.summary}</p>
+    </div>
+   </form>`
+  });
+  let nameShowAlL = document.getElementById("name-show"); // name the film for select :
+  nameShowAlL.addEventListener("click", () => {
+    nameMoves.value = nameShowAlL.innerText;
+    makePageForEpisodes(nameShowAlL.innerText);
+  });
+}
+
+
+function makeMovesSelect(listMoves){
+  listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
+  listMoves.forEach((moves) => {
+    let optionMoves = document.createElement("option");
+    optionMoves.value= moves.id;
+    optionMoves.innerHTML = `${moves.name}`;
+    nameMoves.appendChild(optionMoves);
+  });
+  
+}
+
+function makePageForEpisodes() {
+  if (nameMoves.value == 00 ){
+    showAllMoves();
+  } 
+  removeScreen();
+  removeAllShow();
+  document.getElementById("root").style.display ="grid";
+  episodes.forEach((episode)=>{
     rootElem.innerHTML += `
     <div id="${episode.id}"class="episode-all">
       <p class="episode-title">${episode.name} - S${episode.season.toString()
@@ -30,8 +82,7 @@ function makePageForEpisodes(episodeList) {
   });  
 }
 //  level 200 : function shod the search bar :
-
-
+//search box for search characters in all episode :
 
 function searchEpisode() {
   let counter = 0;
@@ -68,10 +119,12 @@ function selectListEpisode (episodes){
 }
 
 episodeID.addEventListener('change', showEpisodeDesktop );
-
+// show episode when we select episode from select drape:
 function showEpisodeDesktop(){
-   Array.from(episodes).forEach((episode) => { 
-      if (episode.id == episodeID.value){
+  if (episodeID.value == 00 ){
+    makePageForEpisodes();
+  }Array.from(episodes).forEach((episode) => { 
+     if (episode.id == episodeID.value ){
         removeScreen();
         rootElem.innerHTML += `
           <div id="${episode.id}"class="episode-all">
@@ -81,7 +134,7 @@ function showEpisodeDesktop(){
           ${episode.summary}
           <img class="image-episode" src=${episode.image.medium}>
         </div>`;
-      }  
+      }  if (episodeID.value === "first"){makePageForEpisodes();}
     });
    searchDisplay.innerText =`1/${episodeID.length -1}`;
 }
@@ -91,16 +144,7 @@ function showEpisodeDesktop(){
 
 // fetch :
 
-function makeMovesSelect(listMoves){
-  listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
-  listMoves.forEach((moves) => {
-    let optionMoves = document.createElement("option");
-    optionMoves.value= moves.id;
-    optionMoves.innerHTML = `${moves.name}`;
-    nameMoves.appendChild(optionMoves);
-  });
-  
-}
+
 
 function FetchFunction(episodeUrl) {
   fetch(episodeUrl)
@@ -109,13 +153,14 @@ function FetchFunction(episodeUrl) {
   })
     .then((data) => {
       episodes = data;
-      makePageForEpisodes(data);
+      makePageForEpisodes();
       selectListEpisode(data);
       searchEpisode();
       
     })
     .catch((error) => console.log(error));
 }
+
 
 
 
@@ -129,7 +174,11 @@ function showMovesToEpisodeSelectList(){
 
 //end fetch
 
-
+// screen remove for all moves :
+function removeAllShow(){
+  let selectShowScreen = document.getElementsByClassName("show-all-moves");
+  Array.from(selectShowScreen).forEach((opt) => opt.remove());
+}
 
 // screen remover for change screen :
 function removeScreen(){
