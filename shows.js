@@ -2,7 +2,6 @@
 
 //This content is from https://www.tvmaze.com/
 //specifically: https://api.tvmaze.com/shows
-
 function getOneShow() {
   return {
     id: 82,
@@ -1253,7 +1252,15 @@ function getAllShows() {
       schedule: { time: "", days: ["Friday"] },
       rating: { average: 7.1 },
       weight: 94,
-      network: null,
+      network: {
+        id: 13,
+        name: "FX",
+        country: {
+          name: "United States",
+          code: "US",
+          timezone: "America/New_York",
+        },
+      },
       webChannel: { id: 1, name: "Netflix", country: null },
       externals: { tvrage: 33272, thetvdb: 259948, imdb: "tt2309295" },
       image: {
@@ -2849,7 +2856,15 @@ function getAllShows() {
       schedule: { time: "", days: ["Tuesday"] },
       rating: { average: 7.2 },
       weight: 71,
-      network: null,
+      network: {
+        id: 13,
+        name: "FX",
+        country: {
+          name: "United States",
+          code: "US",
+          timezone: "America/New_York",
+        },
+      },
       webChannel: {
         id: 2,
         name: "Hulu",
@@ -4511,7 +4526,15 @@ function getAllShows() {
       schedule: { time: "", days: ["Friday"] },
       rating: { average: 7.2 },
       weight: 88,
-      network: null,
+      network: {
+        id: 13,
+        name: "FX",
+        country: {
+          name: "United States",
+          code: "US",
+          timezone: "America/New_York",
+        },
+      },
       webChannel: { id: 3, name: "Amazon Prime", country: null },
       externals: { tvrage: 37044, thetvdb: 278334, imdb: "tt3502262" },
       image: {
@@ -6376,7 +6399,15 @@ function getAllShows() {
       schedule: { time: "", days: ["Friday"] },
       rating: { average: 8.1 },
       weight: 93,
-      network: null,
+      network: {
+        id: 13,
+        name: "FX",
+        country: {
+          name: "United States",
+          code: "US",
+          timezone: "America/New_York",
+        },
+      },
       webChannel: { id: 1, name: "Netflix", country: null },
       externals: { tvrage: 32950, thetvdb: 264586, imdb: "tt2372162" },
       image: {
@@ -6524,7 +6555,15 @@ function getAllShows() {
       schedule: { time: "", days: ["Friday"] },
       rating: { average: 8.4 },
       weight: 91,
-      network: null,
+      network: {
+        id: 13,
+        name: "FX",
+        country: {
+          name: "United States",
+          code: "US",
+          timezone: "America/New_York",
+        },
+      },
       webChannel: { id: 1, name: "Netflix", country: null },
       externals: { tvrage: 27822, thetvdb: 262980, imdb: "tt1856010" },
       image: {
@@ -6867,7 +6906,15 @@ function getAllShows() {
       schedule: { time: "", days: ["Friday"] },
       rating: { average: 8.2 },
       weight: 88,
-      network: null,
+      network: {
+        id: 13,
+        name: "FX",
+        country: {
+          name: "United States",
+          code: "US",
+          timezone: "America/New_York",
+        },
+      },
       webChannel: { id: 1, name: "Netflix", country: null },
       externals: { tvrage: 39470, thetvdb: 282254, imdb: "tt3398228" },
       image: {
@@ -7366,7 +7413,15 @@ function getAllShows() {
       schedule: { time: "", days: ["Saturday"] },
       rating: { average: 8 },
       weight: 91,
-      network: null,
+      network: {
+        id: 13,
+        name: "FX",
+        country: {
+          name: "United States",
+          code: "US",
+          timezone: "America/New_York",
+        },
+      },
       webChannel: {
         id: 46,
         name: "Starz Play",

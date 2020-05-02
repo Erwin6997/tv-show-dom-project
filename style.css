@@ -32,14 +32,15 @@ body {
   background-color: rgb(223, 222, 223);
   margin: 0px 10% 30px 10%;
 }
-#name-show{
+.show-all-moves> #tittle-Click{
+  width: 100%;
+  margin-left: 10%;
   font-size: 30px;
   background-color: rgb(131, 161, 157);
-  padding-left: 100px;
+  padding-left: 60px;
   margin-top: -30px;
-  height: 1.5cm;
   font-family: "Lucida Console", Courier, monospace;
-
+  text-align: left;
 }
 .image-show{
   padding-top: 30px;
@@ -103,7 +104,7 @@ body {
 .image-show:hover{
   opacity: 0.3;
 }
-#name-show:hover{
+#tittle-Click:hover{
   font-size: 30px;
   background-color: rgb(124, 122, 124);
 }
@@ -148,7 +149,7 @@ body {
   .show-all-moves{
    display: -ms-grid;
   }
-  #name-show{
+  #tittle-Click{
    padding-left: 1cm;
    font-size: 20px;
   }

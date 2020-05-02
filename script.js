@@ -1,31 +1,48 @@
 //You can edit ALL of the code here
 // level 100: function to show the all the episode :
+//start :
 let listMoves;
 function setup() {
   listMoves = getAllShows();
   makeMovesSelect(listMoves);
-  showAllMoves(listMoves);
-  showMovesToEpisodeSelectList();
+  showAllMoves();
+  searchEpisode();
+  //showMovesToEpisodeSelectList(listMoves);
 };
+
 const rootElem = document.getElementById("root");
 let searchContain = document.getElementById("search-container");
 let searchDisplay = document.getElementById("display-search");
 let nameMoves = document.getElementById("moves-Dropdown-list");
+let titleClick;
 let url = "https://api.tvmaze.com/shows/show-id/episodes";
 let episodes;
+let s = 1;
+let z = 1;
 
 
 
-//show all the moves in first :
+//1. make show drop selector --All Moves--
+function makeMovesSelect(listMoves){
+  //listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
+  listMoves.forEach((moves) => {
+    let optionMoves = document.createElement("option");
+   // optionMoves.id = s ++;
+    optionMoves.value= moves.id;
+    optionMoves.innerHTML = `${moves.name}`;
+    nameMoves.appendChild(optionMoves);
+  });
+}
+
+// 2. show all the moves in first page:
 function showAllMoves(){
   removeScreen();
   document.getElementById("root").style.display ="block";
   listMoves.forEach((episode)=>{
+    z++;
    rootElem.innerHTML += ` 
     <form id="${episode.id}" class="show-all-moves"> 
-      <div id="name-show">
-        <h3>${episode.name}</></h3>
-      </div>
+      <span id="tittle-Click" onclick="buttonF(${episode.id})">${episode.name}</span>
       <div id="image-show"><a href="${episode.image.original}">
         <img class="image-show" src=${episode.image.medium}></a>
       </div>
@@ -44,35 +61,50 @@ function showAllMoves(){
     </div>
    </form>`
   });
-  let nameShowAlL = document.getElementById("name-show"); // name the film for select :
-  nameShowAlL.addEventListener("click", () => {
-    nameMoves.value = nameShowAlL.innerText;
-    makePageForEpisodes(nameShowAlL.innerText);
-  });
+}
+// 3. if you select the title of the move send you to fetch:
+
+ function buttonF(value){
+   nameMoves.selectedIndex = value;
+    showMovesToEpisodeSelectList();
 }
 
-
-function makeMovesSelect(listMoves){
-  listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
-  listMoves.forEach((moves) => {
-    let optionMoves = document.createElement("option");
-    optionMoves.value= moves.id;
-    optionMoves.innerHTML = `${moves.name}`;
-    nameMoves.appendChild(optionMoves);
-  });
-  
+//4. select episode for send url to fetch
+nameMoves.addEventListener("change", showMovesToEpisodeSelectList);
+function showMovesToEpisodeSelectList(){
+  if (nameMoves.value === "-- All Moves --"){console.log(" alll moves shod :"); return showAllMoves();}
+  else{
+  let episodeSelect = nameMoves.value;
+  let urlNew = url.replace("show-id", episodeSelect);
+  FetchFunction(urlNew);
+  }
 }
+// start level 400 and add fetch() :
+//5. fetch :
+function FetchFunction(episodeUrl) {
+  fetch(episodeUrl)
+  .then(function (response) {
+    return response.json()
+  })
+  .then((data) => {
+    episodes = data;
+    makePageForEpisodes();
+    selectListEpisode();
+    searchEpisode();
+  })
+  .catch((error) => console.log(error));
+}
+//end fetch
 
+//6.show the episode which is come form the fetch:
 function makePageForEpisodes() {
-  if (nameMoves.value == 00 ){
-    showAllMoves();
-  } 
+  if (nameMoves.value === "-- All Moves --" ){console.log(" alll moves shod :"); return showAllMoves();} 
   removeScreen();
   removeAllShow();
   document.getElementById("root").style.display ="grid";
-  episodes.forEach((episode)=>{
+  Array.from(episodes).forEach((episode)=>{
     rootElem.innerHTML += `
-    <div id="${episode.id}"class="episode-all">
+    <div id="${episode.name}"class="episode-all">
       <p class="episode-title">${episode.name} - S${episode.season.toString()
         .padStart(2, "0")} E${episode.number.toString()
           .padStart(2, "0")}</p>
@@ -81,32 +113,13 @@ function makePageForEpisodes() {
     </div>`    
   });  
 }
-//  level 200 : function shod the search bar :
-//search box for search characters in all episode :
 
-function searchEpisode() {
-  let counter = 0;
-  let lowCase = searchContain.value.toLowerCase();
-  let allEpisodeSearch = document.getElementsByClassName("episode-all")
-  Array.from(allEpisodeSearch).forEach((episode) => {
-    let episodeCharacter = episode.innerText.toLowerCase();
-    if (episodeCharacter.indexOf(lowCase) != -1) {
-      episode.style.display = "block";
-      counter += 1;
-    } else {
-       episode.style.display = "none";
-    }
-  });
-  searchContain.addEventListener("input", searchEpisode);
-  searchDisplay.innerText =
-   `${counter} / ${allEpisodeSearch.length} episodes`;
-}
-
+// 7. show le episode list on select drupe list:
 // level 300 start to make select with all episode and E00N00:
 let episodeID = document.getElementById("episode-Dropdown-list");
-function selectListEpisode (episodes){
+function selectListEpisode (){
   removeEpisodeList();
-  episodes.forEach((episode) => {
+  Array.from(episodes).forEach((episode) => {
     let optionEpisode = document.createElement("option");
     optionEpisode.className = "Show-episode";
     optionEpisode.value= episode.id;
@@ -115,13 +128,13 @@ function selectListEpisode (episodes){
         .padStart(2, "0")} - ${episode.name}`;
         episodeID.appendChild(optionEpisode);
   });
-   showEpisodeDesktop();
 }
 
+// 8, make display for all the episode :
 episodeID.addEventListener('change', showEpisodeDesktop );
 // show episode when we select episode from select drape:
 function showEpisodeDesktop(){
-  if (episodeID.value == 00 ){
+  if (episodeID.value === "-- All Episodes --" ){
     makePageForEpisodes();
   }Array.from(episodes).forEach((episode) => { 
      if (episode.id == episodeID.value ){
@@ -134,45 +147,50 @@ function showEpisodeDesktop(){
           ${episode.summary}
           <img class="image-episode" src=${episode.image.medium}>
         </div>`;
-      }  if (episodeID.value === "first"){makePageForEpisodes();}
+      }
     });
    searchDisplay.innerText =`1/${episodeID.length -1}`;
 }
 
 
-// start level 400 and add petch() :
+//  level 200 : function shod the search bar :
+//search box for search characters in all episode :
 
-// fetch :
-
-
-
-function FetchFunction(episodeUrl) {
-  fetch(episodeUrl)
-  .then(function (response) {
-    return response.json()
-  })
-    .then((data) => {
-      episodes = data;
-      makePageForEpisodes();
-      selectListEpisode(data);
-      searchEpisode();
-      
-    })
-    .catch((error) => console.log(error));
+function searchEpisode() {
+  if (nameMoves.value === "-- All Moves --"){
+    let allEpisodeSearch = document.getElementsByClassName("show-all-moves");
+    let counter = 0;
+    let lowCase = searchContain.value.toLowerCase();
+    Array.from(allEpisodeSearch).forEach((episode) => {
+      let episodeCharacter = episode.innerText.toLowerCase();
+      if (episodeCharacter.indexOf(lowCase) != -1) {
+        episode.style.display = "block";
+        counter += 1;
+      } else {
+         episode.style.display = "none";
+      }
+    });
+    searchContain.addEventListener("input", searchEpisode);
+    searchDisplay.innerText =
+     `${counter} / ${allEpisodeSearch.length} Moves`;
+  }else{
+    let allEpisodeSearch = document.getElementsByClassName("episode-all")
+    let counter = 0;
+  let lowCase = searchContain.value.toLowerCase();
+  Array.from(allEpisodeSearch).forEach((episode) => {
+    let episodeCharacter = episode.innerText.toLowerCase();
+    if (episodeCharacter.indexOf(lowCase) != -1) {
+      episode.style.display = "block";
+      counter += 1;
+    } else {
+       episode.style.display = "none";
+    }
+  });
+  searchContain.addEventListener("input", searchEpisode);
+  searchDisplay.innerText =
+   `${counter} / ${allEpisodeSearch.length} Episodes`;
+  }
 }
-
-
-
-
-nameMoves.addEventListener("change", showMovesToEpisodeSelectList);
-function showMovesToEpisodeSelectList(){
-  let episodeSelect = nameMoves.value;
-  let urlNew = url.replace("show-id", episodeSelect);
-  FetchFunction(urlNew);
-}
-
-
-//end fetch
 
 // screen remove for all moves :
 function removeAllShow(){
