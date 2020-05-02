@@ -17,17 +17,16 @@ let nameMoves = document.getElementById("moves-Dropdown-list");
 let titleClick;
 let url = "https://api.tvmaze.com/shows/show-id/episodes";
 let episodes;
-let s = 1;
-let z = 1;
+
+
 
 
 
 //1. make show drop selector --All Moves--
 function makeMovesSelect(listMoves){
-  //listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
+  listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
   listMoves.forEach((moves) => {
     let optionMoves = document.createElement("option");
-   // optionMoves.id = s ++;
     optionMoves.value= moves.id;
     optionMoves.innerHTML = `${moves.name}`;
     nameMoves.appendChild(optionMoves);
@@ -36,13 +35,14 @@ function makeMovesSelect(listMoves){
 
 // 2. show all the moves in first page:
 function showAllMoves(){
+  let z = 0;
   removeScreen();
   document.getElementById("root").style.display ="block";
   listMoves.forEach((episode)=>{
     z++;
    rootElem.innerHTML += ` 
-    <form id="${episode.id}" class="show-all-moves"> 
-      <span id="tittle-Click" onclick="buttonF(${episode.id})">${episode.name}</span>
+    <form id="${z}" class="show-all-moves"> 
+      <span id="tittle-Click" onclick="buttonF(${z})">${episode.name}</span>
       <div id="image-show"><a href="${episode.image.original}">
         <img class="image-show" src=${episode.image.medium}></a>
       </div>
