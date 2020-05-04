@@ -19,9 +19,6 @@ let url = "https://api.tvmaze.com/shows/show-id/episodes";
 let episodes;
 
 
-
-
-
 //1. make show drop selector --All Moves--
 function makeMovesSelect(listMoves){
   listMoves.sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -41,7 +38,7 @@ function showAllMoves(){
   listMoves.forEach((episode)=>{
     z++;
    rootElem.innerHTML += ` 
-    <form id="${z}" class="show-all-moves"> 
+    <form id="${episode.id}" class="show-all-moves"> 
       <span id="tittle-Click" onclick="buttonF(${z})">${episode.name}</span>
       <div id="image-show"><a href="${episode.image.original}">
         <img class="image-show" src=${episode.image.medium}></a>
@@ -59,7 +56,15 @@ function showAllMoves(){
       <div class="summary-All">
       <p >${episode.summary}</p>
     </div>
-   </form>`
+   </form>
+   <form id="character" class="class two" >
+   <p id=" ${name}Cast"> </p>
+   <div id="image-show"><a href="${episode.image.original}">
+    <img class="image-show" src=${episode.image.medium}></a>
+    <p><a href="https://ww.123moviesfree.ws/genre/${episode.genres}/">${episode.genres}</a></p>
+    <p><strong>as: </strong> <a href="https://ww.123moviesfree.ws/genre/${episode.genres}/">${episode.genres}</a></p>
+  </div>
+ </form>`
   });
 }
 // 3. if you select the title of the move send you to fetch:
@@ -76,6 +81,8 @@ function showMovesToEpisodeSelectList(){
   else{
   let episodeSelect = nameMoves.value;
   let urlNew = url.replace("show-id", episodeSelect);
+  let urlForAct = url.replace("show-id/episodes", episodeSelect);
+  console.log("sgshgd"+ urlForAct);
   FetchFunction(urlNew);
   }
 }
