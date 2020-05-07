@@ -56,7 +56,7 @@ function firstPage(listMoves){
     //  console.log("counter : "+ counter);
       slideShowD.style.transition = "transform 4s ease-in-out";
       slideShowD.style.transform = 'translateX(' + (-size + counter) + 'px)';
-      console.log(+ (-size + counter));
+     // console.log(+ (-size + counter));
       counter ++;
     };
  setInterval(replay, 300);
@@ -137,7 +137,7 @@ function showAllMoves(id){
         // first fetch for asters:
        let castF = document.getElementById("castF");
        let urlNewFirst = urlName.replace("*", id);
-       console.log( urlNewFirst);
+       //console.log( urlNewFirst);
        fetch(urlNewFirst)
        .then(function (response) {return response.json()})
        .then((data) => {cast(data) })
