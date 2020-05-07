@@ -1,9 +1,30 @@
 
+*{
+  padding: opx;
+  margin: opx;
+  box-sizing: border-box;
+}
+
+.container{
+  
+  margin-top: 9cm;
+  border: 3px solid rgba(31, 22, 22, 0.7);
+  overflow: hidden;
+  position: relative;
+}
+.slideShowD{
+  justify-content: space-around;
+  margin-left: -15px;
+  display: flex;
+  width : 1130px;
+  height: 350px;
+}
 body {
   background-color: rgba(190, 189, 190, 0.794);
   margin: 0px;
   width: 100%;
   height: 100%;
+  font-family: "Lucida Console", Courier, monospace;
 }
 #search-box {
   background-color: rgb(95, 94, 95);
@@ -21,19 +42,78 @@ body {
   background-color: rgb(158, 156, 158);
   width: 95%;
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 35px;
   justify-content: center;
   border-radius: 5px;
   margin: 30px 5% 10px 2%;
   box-shadow: 0px 0px 20px rgba(23, 24, 24, 0.7);
   padding-top: 20px;
 }
-.show-all-moves{
+.root-first-page{
+  justify-content: space-around;
+  display: contents ;
+  position: relative;
+
+}
+.image-first-page{
+  border-radius: 10px;
+  height: 6cm;
+  width: 4cm;
+}
+.overlay {
+  position: absolute; 
+  /* background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); Black see-through */
+  color: #f1f1f1; 
+  width: 4cm;
+  transition: .5s ease;
+  opacity:1;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  margin-top: -2cm;
+}
+
+.root-first:hover .overlay {
+  opacity: 1;
+  
+}
+.root-first:hover .image-first-page{
+ opacity: 0.4;
+ content:url(/picplay.jpg);
+}
+.character{
+  
+  width: 80%;
+  height: 450px;
+  background-color: rgb(223, 222, 223);
+  border-radius: 5px;
+  border: hidden; 
+  margin-top: -1cm;
+  margin-left: 10%;
+  
+   
+}
+.as{
+  margin-left: 10cm;
+  margin-top: -5cm;
+}
+#castF{
+  margin-left: 1cm;
+  margin-bottom: 1.1cm;
+}
+.show-all-moves {
+  background-color: rgb(223, 222, 223);
+  margin: 0px 10% 30px 10%;
+}
+.class-two{
   background-color: rgb(223, 222, 223);
   margin: 0px 10% 30px 10%;
 }
 .show-all-moves> #tittle-Click{
   width: 100%;
+  height: 100%;
   margin-left: 10%;
   font-size: 30px;
   background-color: rgb(131, 161, 157);
@@ -54,7 +134,7 @@ body {
 }
 .summary-All{
   margin: 40px 10% 100px 10%;
-  padding-bottom: 2cm;
+  padding-bottom: 10px;
   font-family: "Lucida Console", Courier, monospace;
 }
 .episode-all {
@@ -97,6 +177,17 @@ body {
   text-decoration: none;
   color: rgb(107, 110, 107);
   padding: 15px 20px 7px 50px;
+  position: fixed;
+  text-align: center;
+}
+.TimeZone {
+  top: 88%;
+  left : 0px;
+  background-color: rgb(37, 34, 37);
+  position: absolute;
+  text-decoration: none;
+  color: rgb(163, 168, 163);
+  padding: 5px 20px 7px 5px;
   position: fixed;
   text-align: center;
 }
@@ -160,28 +251,49 @@ body {
 }
 @media only screen and (min-width: 300px) {
   #root {    
-    grid-template-columns: auto;  
+    grid-template-columns: auto auto;  
   }  
-  
+  body{
+    background-color: rgb(32, 32, 32);
+};
+.container{
+    margin-top: 2cm;
+    border: 3px solid black;
+    overflow: hidden;
+    position: relative;
+   
 }
+.slide{
+    margin-left: -15px;
+    display: flex;
+    width: 70%;
+    height: 500px;
+}
+}
+#footer{
+ color: blanchedalmond;
+ 
+ padding-left: 25cm;
+}
+
 @media only screen and (min-width: 600px) {
   #root {   
-    grid-template-columns: auto auto;    
+    grid-template-columns: auto auto auto ;    
   }
 }
 @media only screen and (min-width: 900px) {
   #root {    
-    grid-template-columns: auto auto auto;  
+    grid-template-columns: auto auto auto auto auto ;  
   }  
 }
 @media only screen and (min-width: 1200px) {
   #root {    
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
   }
 }
 @media only screen and (min-width: 1450px) {
   #root {    
-    grid-template-columns: auto auto auto auto auto;    
+    grid-template-columns: auto auto auto auto auto auto auto auto auto ;    
   }
 }
 
