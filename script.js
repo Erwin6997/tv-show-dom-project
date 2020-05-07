@@ -152,8 +152,8 @@ function showAllMoves(id){
               <div id="image-showS"><a href="${data._embedded.cast[i].person.image.original}">
                 <img class="image-show" src=${data._embedded.cast[i].person.image.medium}></a>
                 <div id="as" class="as">
-                  <p><a href="http://www.tvmaze.com/people/271/${data._embedded.cast[i].person.name}/">${data._embedded.cast[i].person.name}</a></p>
-                  <p><strong>as: </strong> <a href="http://www.tvmaze.com/characters/202/${data._embedded.cast[i].character.name}/">${data._embedded.cast[i].character.name}</a></p>
+                  <p><a href="${data._embedded.cast[i].person.url}/">${data._embedded.cast[i].person.name}</a></p>
+                  <p><strong>as: </strong> <a href="${data._embedded.cast[i].character.url}/">${data._embedded.cast[i].character.name}</a></p>
                 </div>
                 </div>
               </form>`
