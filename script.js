@@ -142,7 +142,7 @@ function showAllMoves(id){
        .then(function (response) {return response.json()})
        .then((data) => {cast(data) })
        .catch((error) => console.log(error))
-        function cast(data){
+        function cast(data) {
           // let character = document.createElement("form");
           //    character.classList.add("character");
             // castF.appendChild(character);
