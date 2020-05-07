@@ -18,7 +18,7 @@ let nameMoves = document.getElementById("moves-Dropdown-list");
 let searchBox = document.getElementById("search-box");
 let titleClick;
 let url ="https://api.tvmaze.com/shows/show-id/episodes";
-let urlName = "http://api.tvmaze.com/shows/*?embed=cast";
+let urlName = "https://api.tvmaze.com/shows/*?embed=cast";
 let episodes;
 let control;
 
