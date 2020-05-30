@@ -113,7 +113,7 @@ function showAllMoves(id){
       if (id === episode.id){
       rootElem.innerHTML = ` 
        <form id="${episode.id}" class="show-all-moves"> 
-          <span id="tittle-Click" onclick="buttonF(${z})">${episode.name}</span>
+          <span id="tittle-Click" onclick="buttonF(${z})">${episode.name}<i class="fas fa-caret-square-right"></i></span>
           <div id="image-show"><a href="${episode.image.original}">
             <img class="image-show" src=${episode.image.medium}></a>
           </div>
@@ -147,8 +147,8 @@ function showAllMoves(id){
           //    character.classList.add("character");
             // castF.appendChild(character);
           for (let i = 0 ; i <= data._embedded.cast.length ; i ++){
-            rootElem.innerHTML += `
-            <form id="character" class="character">
+            castF.innerHTML += `
+            <div id="character" class="character">
               <div id="image-showS"><a href="${data._embedded.cast[i].person.image.original}">
                 <img class="image-show" src=${data._embedded.cast[i].person.image.medium}></a>
                 <div id="as" class="as">
@@ -156,10 +156,10 @@ function showAllMoves(id){
                   <p><strong>as: </strong> <a href="${data._embedded.cast[i].character.url}"> ${data._embedded.cast[i].character.name}</a></p>
                 </div>
                 </div>
-              </form>`
+              </div>`
           };
           let character = document.querySelectorAll("#character");
-        
+
         }
       }
     });
@@ -317,12 +317,12 @@ function searchEpisode() {
         episode.style.display = "block";
         counter += 1;
       } else {
-         episode.style.display = "none";
+        episode.style.display = "none";
       }
     });
     searchContain.addEventListener("input", searchEpisode);
     searchDisplay.innerText =
-     `${counter} / ${allEpisodeSearch.length} Moves`;
+      `${counter} / ${allEpisodeSearch.length} Moves`;
   }else{
     let allEpisodeSearch = document.getElementsByClassName("episode-all")
     let counter = 0;

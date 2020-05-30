@@ -50,7 +50,8 @@ body {
   padding-top: 20px;
 }
 .root-first-page{
-  justify-content: space-around;
+  width: 80%;
+  padding-left: 2cm;
   display: contents ;
   position: relative;
 
@@ -296,4 +297,3 @@ body {
     grid-template-columns: auto auto auto auto auto auto auto auto auto ;    
   }
 }
-
